@@ -65,14 +65,14 @@ GROUP BY company;
 -- Answer: 40 
 
 -- 10. Add the code to order the query in #9 from highest to lowest average star rating. Which company with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating?
-SELECT company, AVG(star_rating)
+SELECT company, AVG(star_rating) AS avg_star_rating
 FROM data_analyst_jobs
 WHERE review_count > 5000
 	AND company IS NOT NULL
 GROUP BY company, star_rating
 ORDER BY star_rating DESC;
 
--- Answer: American Express & General Motors are tied @ 4.2
+-- Answer: American express, general motors, kaiser permanente, microsoft, nike, unilever are tied at 4.2
 
 -- 11. Find all the job titles that contain the word ‘Analyst’. How many different job titles are there?
 SELECT title
