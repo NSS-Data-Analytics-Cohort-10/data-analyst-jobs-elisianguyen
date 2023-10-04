@@ -73,10 +73,18 @@ ORDER BY star_rating DESC;
 -- Answer: American Express & General Motors are tied @ 4.2
 
 -- 11. Find all the job titles that contain the word ‘Analyst’. How many different job titles are there?
-SELECT *
-FROM data_analyst_jobs;
+SELECT title
+FROM data_analyst_jobs
+WHERE title LIKE '%Analyst';
+
+-- Answer: 1071
 
 -- 12. How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
+SELECT title
+FROM data_analyst_jobs
+WHERE title NOT LIKE '%Analy%' 
+	AND title NOT LIKE '%ANALY%'
+	AND title NOT like '%analy%';
 
 -- BONUS: You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks.
 -- Disregard any postings where the domain is NULL.
