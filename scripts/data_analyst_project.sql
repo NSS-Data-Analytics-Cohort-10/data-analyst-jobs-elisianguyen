@@ -43,14 +43,38 @@ ORDER BY avg_rating DESC;
 -- Answer: NE
 
 -- 7. Select unique job titles from the data_analyst_jobs table. How many are there?
+SELECT COUNT(DISTINCT title)
+FROM data_analyst_jobs;
+
+-- Answer: 881
 
 -- 8. How many unique job titles are there for California companies?
+SELECT COUNT(DISTINCT title)
+FROM data_analyst_jobs
+WHERE location = 'CA';
+
+-- Answer: 230
 
 -- 9. Find the name of each company and its average star rating for all companies that have more than 5000 reviews across all locations. How many companies are there with more that 5000 reviews across all locations?
+SELECT company, AVG(star_rating)
+FROM data_analyst_jobs
+WHERE review_count > 5000
+GROUP BY company;
+
+-- Answer: 40 (1 IS NULL FOR COMPANY NAME)
 
 -- 10. Add the code to order the query in #9 from highest to lowest average star rating. Which company with more than 5000 reviews across all locations in the dataset has the highest star rating? What is that rating?
+SELECT company, AVG(star_rating)
+FROM data_analyst_jobs
+WHERE review_count > 5000
+GROUP BY company, star_rating
+ORDER BY star_rating DESC;
+
+-- Answer: American Express & General Motors are tied @ 4.2
 
 -- 11. Find all the job titles that contain the word ‘Analyst’. How many different job titles are there?
+SELECT *
+FROM data_analyst_jobs;
 
 -- 12. How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
 
