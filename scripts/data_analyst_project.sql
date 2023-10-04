@@ -23,9 +23,9 @@ WHERE location = 'TN' OR location = 'KY';
 -- 4. How many postings in Tennessee have a star rating above 4?
 SELECT COUNT(*)
 FROM data_analyst_jobs
-WHERE star_rating > 4;
+WHERE location = 'TN' AND star_rating > 4;
 
--- Answer: 416
+-- Answer: 3
 
 -- 5. How many postings in the dataset have a review count between 500 and 1000?
 SELECT COUNT(*)
@@ -85,8 +85,25 @@ FROM data_analyst_jobs
 WHERE title NOT LIKE '%Analy%' 
 	AND title NOT LIKE '%ANALY%'
 	AND title NOT like '%analy%';
+-- Answer: Tableau
 
 -- BONUS: You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks.
+
 -- Disregard any postings where the domain is NULL.
 -- Order your results so that the domain with the greatest number of hard to fill jobs is at the top.
+
+SELECT domain, COUNT(title) AS title, days_since_posting
+FROM data_analyst_jobs
+WHERE skill = 'SQL'
+	AND days_since_posting > 21
+	AND domain IS NOT NULL
+GROUP BY domain, days_since_posting
+ORDER BY title DESC;
+
 -- Which three industries are in the top 4 on this list? How many jobs have been listed for more than 3 weeks for each of the top 4?
+
+-- Answer 1: Consulting and Business Services, Consumer Goods and Services, Computers and Electronics, and Internet and Software
+
+-- Answer 2: All 4
+
+
