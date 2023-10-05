@@ -84,15 +84,17 @@ WHERE title LIKE '%Analyst%'
 -- Answer: 1789
 
 -- 12. How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
-SELECT title
+SELECT COUNT(title)
 FROM data_analyst_jobs
 WHERE title NOT LIKE '%Analy%' 
 	AND title NOT LIKE '%ANALY%'
 	AND title NOT LIKE '%analy%';
 
--- Answer: Tableau
+-- Answer: 4 do not include the word Analyst or Analytics -- Word in common: Tableau
 
--- BONUS: You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks.
+-- BONUS: You want to understand which jobs requiring SQL are hard to fill. 
+
+-- Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks.
 
 -- Disregard any postings where the domain is NULL.
 
@@ -111,5 +113,4 @@ ORDER BY title DESC;
 -- Answer 1: Consulting and Business Services, Consumer Goods and Services, Computers and Electronics, and Internet and Software
 
 -- Answer 2: All 4
-
 
